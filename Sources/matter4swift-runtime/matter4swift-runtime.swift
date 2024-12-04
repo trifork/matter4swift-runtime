@@ -13,7 +13,7 @@ public enum matter4swift
 extension matter4swift.MatterStructure : CustomStringConvertible
 {
     public var description: String {
-        let substrings = data.map { (key: Int, value: matter4swift.MatterDataValue) in
+        let substrings = data.map { (key: UInt64, value: matter4swift.MatterDataValue) in
             "\(key):\(value)"
         }
         return "{" + substrings.joined(separator: ", ") + "}"

@@ -78,7 +78,7 @@ public extension UInt8
     }
 
     func toMatterDataValue() -> matter4swift.MatterDataValue {
-        return matter4swift.MatterDataValue(unsignedIntegerValue: UInt(self))
+        return matter4swift.MatterDataValue(unsignedIntegerValue: UInt64(self))
     }
 }
 
@@ -94,7 +94,7 @@ public extension UInt16
     }
 
     func toMatterDataValue() -> matter4swift.MatterDataValue {
-        return matter4swift.MatterDataValue(unsignedIntegerValue: UInt(self))
+        return matter4swift.MatterDataValue(unsignedIntegerValue: UInt64(self))
     }
 }
 
@@ -110,7 +110,7 @@ public extension UInt32
     }
 
     func toMatterDataValue() -> matter4swift.MatterDataValue {
-        return matter4swift.MatterDataValue(unsignedIntegerValue: UInt(self))
+        return matter4swift.MatterDataValue(unsignedIntegerValue: UInt64(self))
     }
 }
 
@@ -126,7 +126,7 @@ public extension UInt64
     }
 
     func toMatterDataValue() -> matter4swift.MatterDataValue {
-        return matter4swift.MatterDataValue(unsignedIntegerValue: UInt(self))
+        return matter4swift.MatterDataValue(unsignedIntegerValue: UInt64(self))
     }
 }
 
@@ -143,7 +143,7 @@ public extension Int8
     }
 
     func toMatterDataValue() -> matter4swift.MatterDataValue {
-        return matter4swift.MatterDataValue(signedIntegerValue: Int(self))
+        return matter4swift.MatterDataValue(signedIntegerValue: Int64(self))
     }
 }
 
@@ -160,7 +160,7 @@ public extension Int16
     }
 
     func toMatterDataValue() -> matter4swift.MatterDataValue {
-        return matter4swift.MatterDataValue(signedIntegerValue: Int(self))
+        return matter4swift.MatterDataValue(signedIntegerValue: Int64(self))
     }
 }
 
@@ -177,7 +177,7 @@ public extension Int32
     }
 
     func toMatterDataValue() -> matter4swift.MatterDataValue {
-        return matter4swift.MatterDataValue(signedIntegerValue: Int(self))
+        return matter4swift.MatterDataValue(signedIntegerValue: Int64(self))
     }
 }
 
@@ -194,7 +194,7 @@ public extension Int64
     }
 
     func toMatterDataValue() -> matter4swift.MatterDataValue {
-        return matter4swift.MatterDataValue(signedIntegerValue: Int(self))
+        return matter4swift.MatterDataValue(signedIntegerValue: Int64(self))
     }
 }
 

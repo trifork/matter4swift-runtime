@@ -12,16 +12,16 @@ public extension matter4swift
 
     struct MatterStructure
     {
-        public let data:[Int:MatterDataValue]
+        public let data:[UInt64:MatterDataValue]
 
-        public init(data: [Int : MatterDataValue]) {
+        public init(data: [UInt64 : MatterDataValue]) {
             self.data = data
         }
 
         public init(array:[[String:Any]]) throws {
-            var data:[Int:matter4swift.MatterDataValue] = [:]
+            var data:[UInt64:matter4swift.MatterDataValue] = [:]
             try array.forEach { (elt:[String : Any]) in
-                if let contextTag = elt[MTRContextTagKey] as? Int, let eltData = elt[MTRDataKey] as? [String:Any] {
+                if let contextTag = elt[MTRContextTagKey] as? UInt64, let eltData = elt[MTRDataKey] as? [String:Any] {
                     data[contextTag] = try matter4swift.MatterDataValue(dict: eltData)
                 }
             }
@@ -31,7 +31,7 @@ public extension matter4swift
         func toArray() -> [[String:Any]]
         {
             var array:[[String:Any]] = []
-            data.forEach { (key: Int, value: MatterDataValue) in
+            data.forEach { (key: UInt64, value: MatterDataValue) in
                 array.append([
                     MTRContextTagKey: key,
                     MTRDataKey: value.toDictionary()
@@ -77,8 +77,8 @@ public extension matter4swift
 
     struct MatterDataValue
     {
-        public let signedIntegerValue:Int?
-        public let unsignedIntegerValue:UInt?
+        public let signedIntegerValue:Int64?
+        public let unsignedIntegerValue:UInt64?
         public let booleanValue:Bool?
         public let stringValue:String?
         public let octetStringValue:[UInt8]?
@@ -100,7 +100,7 @@ public extension matter4swift
             self.arrayValue = nil
         }
 
-        public init(signedIntegerValue:Int)
+        public init(signedIntegerValue:Int64)
         {
             self.signedIntegerValue = signedIntegerValue
             self.unsignedIntegerValue = nil
@@ -113,7 +113,7 @@ public extension matter4swift
             self.arrayValue = nil
         }
 
-        public init(unsignedIntegerValue:UInt)
+        public init(unsignedIntegerValue:UInt64)
         {
             self.signedIntegerValue = nil
             self.unsignedIntegerValue = unsignedIntegerValue
@@ -222,8 +222,8 @@ public extension matter4swift
             let rawType = dict[MTRTypeKey] as! String
             let rawValue = dict[MTRValueKey]
 
-            var signedIntegerValue:Int? = nil
-            var unsignedIntegerValue:UInt? = nil
+            var signedIntegerValue:Int64? = nil
+            var unsignedIntegerValue:UInt64? = nil
             var booleanValue:Bool? = nil
             var stringValue:String? = nil
             var octetStringValue:[UInt8]? = nil
@@ -234,9 +234,9 @@ public extension matter4swift
 
             switch (rawType) {
             case MTRSignedIntegerValueType: // NSNumber object.
-                signedIntegerValue = rawValue as? Int
+                signedIntegerValue = (rawValue as? NSNumber)?.int64Value
             case MTRUnsignedIntegerValueType: // NSNumber object.
-                unsignedIntegerValue = rawValue as? UInt
+                unsignedIntegerValue = (rawValue as? NSNumber)?.uint64Value
             case MTRBooleanValueType: // NSNumber object.
                 booleanValue = rawValue as? Bool
             case MTRUTF8StringValueType: // NSString object.
